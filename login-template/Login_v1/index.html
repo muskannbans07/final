@@ -45,7 +45,7 @@
             <img src="images/cutepic2.jpg" alt="IMG" />
           </div>
 
-          <form class="login100-form validate-form">
+          <form class="login100-form validate-form" onsubmit="fLogin(event)">
             <span class="login100-form-title"> Member Login </span>
 
             <div
@@ -119,5 +119,19 @@
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
+    <script>
+      function fLogin(event) {
+        event.preventDefault();
+
+        const email = document.querySelector('input[name="email"]').value;
+        const pass = document.querySelector('input[name="pass"]').value;
+
+        if (email && pass) {
+          window.location.href = "../everythingfornotion copy 2/notion.html";
+        } else {
+          alert("Please enter both email and password!");
+        }
+      }
+    </script>
   </body>
 </html>
