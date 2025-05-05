@@ -1,0 +1,89 @@
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-top {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-button {
+    height: 30px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-button:hover {
+    color: lightcoral;
+}
+
+.modal-button:active {
+    opacity: 50%;
+}
+
+h1 {
+    margin-left: 10px;
+    margin-top: 30px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 90px 18%;
+    padding: 30px;
+    border-radius: 10px;
+    width: 60%;
+    height: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.notes-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.notes-table th, .notes-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.notes-table th {
+    font-weight: 600;
+    color: #555;
+    background-color: #f9f9f9;
+}
+
+.notes-table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.notes-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.notes-table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.close {
+    color: gray;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}

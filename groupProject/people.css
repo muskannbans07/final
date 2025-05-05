@@ -1,0 +1,62 @@
+.people-section {
+    width: 550px;
+}
+
+.people-heading {
+    margin-bottom: 7px;
+    width: 510px;
+}
+
+.people-table {
+    margin-top: 0px;
+    margin-left: 2px;
+}
+
+.info {
+    display: flex;
+    gap: 10px;
+    text-decoration: underline;
+    text-decoration-color: lightgray;
+    font-size: small;
+}
+
+.people-input {
+    display: flex;
+    gap: 20px;
+}
+
+.people-input > input {
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 8px;
+}
+
+.people-input > input:focus {
+    outline: none;
+}
+
+.add-new-people {
+    color: grey;
+}
+
+.name:focus,
+.ph-no:focus,
+.email:focus {
+    outline: none;
+    background-color: white;
+    padding: 6px 8px;
+    border-radius: 10px;
+}
+
+.email {
+    background-color: #E1EEBC;
+    border-radius: 20px;
+    padding: 0px 3px;
+}
+
+.ph-no {
+    background-color: #F7CFD8;
+    border-radius: 20px;
+    padding: 0px 3px;
+}

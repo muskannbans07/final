@@ -1,0 +1,326 @@
+html {
+    font-family: 'Roboto Mono';
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #F7CFD8;
+    margin: 0;
+}
+
+.header-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-image {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.top {
+    position: relative;
+    margin-left: 80px;
+    margin-top: -55px;
+    display: flex;
+    align-items: center;
+    gap: 1030px;
+}
+
+.profile {
+    height: 6.5rem;
+    border-radius: 10px;
+}
+
+.profile-img {
+    border-radius: 10px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 950px;
+    margin-left: 80px;
+}
+
+.add-new {
+    border: none;
+    border-radius: 5px;
+    padding: 6px 13px;    
+    margin-top: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.add-new:hover {
+    color: #FF9494;
+}
+
+.add-new:active {
+    opacity: 50%;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 330px);
+    gap: 70px;
+    margin-left: 120px;
+    margin-top: 40px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+.card, .new-page-card {
+    height: 210px;
+    background-color: white;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgb(232, 231, 231);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.card:active {
+    opacity: 50%;
+}
+
+.card-header-image {
+    width: 100%;
+    height: 150px; 
+    object-fit: cover;
+    object-position: bottom;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.card-topic {
+    padding-left: 20px;
+    font-size: large;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+.last-card {
+    justify-content: center;
+    align-items: center;
+    color: gray;
+}
+
+.last-card:hover {
+    background-color: lightgray;
+}
+
+.last-card:active {
+    opacity: 50%;
+}
+
+.notes-table-container {
+    max-height: 400px; /* or whatever fits nicely */
+    overflow-y: auto;
+    margin-top: 20px;
+}
+  
+/* Optional: make scroll bar look better */
+.notes-table-container::-webkit-scrollbar {
+    width: 8px;
+}
+  
+.notes-table-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+  
+
+.open-note-btn {
+    color: white;
+    display: none;
+    margin-left: 8px;
+    background-color: pink;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 2px 6px;
+    cursor: pointer;
+    vertical-align: middle;
+}  
+
+.open-note-btn:hover {
+    opacity: 70%;
+}
+
+.open-note-btn:active {
+    opacity: 50%;
+}
+
+.delete-note-btn {
+    display: none;
+    margin-left: 4px;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 2px 6px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.delete-note-btn:hover {
+    opacity: 70%;
+}
+
+.delete-note-btn:active {
+    opacity: 50%;
+}
+
+.note-title {
+    display: inline-block;
+    border: none;
+    background-color: rgb(248, 248, 247);
+    padding: 8px 10px;
+    border-radius: 20px;
+}
+
+.note-title:focus {
+    outline: none;
+}
+
+.note-title-cell:hover .open-note-btn,
+.note-title-cell:hover .delete-note-btn {
+  display: inline-block;
+}
+
+.note-title-cell {
+    position: relative;
+}
+
+.note-title-cell:hover .open-note-btn {
+    display: inline-block;
+}  
+
+.edit-dropdown-container {
+    display: inline-block;
+    position: relative;
+}
+  
+.edit-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+    min-width: 100px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+  
+.edit-option {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+  
+.edit-option:hover {
+    background-color: #f1f1f1;
+}
+  
+
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-topic:focus {
+    outline: none;
+    background-color: rgb(248, 248, 247);
+    height: 20px;
+    padding: 5px 5px;
+    width: 200px;
+}
+
+.card-edit-container {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}   
+  
+.card-edit-btn {
+    display: none;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #555;
+}
+
+.card-edit-btn:hover {
+    opacity: 70%;
+}
+
+.card-edit-btn:active {
+    opacity: 50%;
+}
+  
+.card:hover .card-edit-btn {
+    display: block;
+}
+  
+.card-edit-menu {
+    display: none;
+    position: absolute;
+    top: 32px;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    min-width: 160px;
+    z-index: 100;
+}
+  
+.card-edit-option {
+    padding: 10px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+  
+.card-edit-option:hover {
+    background-color: #f1f1f1;
+}
+
+.new-course-input:focus {
+    outline: none;
+}
+
+.new-course-input {
+    border: none;
+    background-color: rgb(248, 248, 247);
+    padding: 8px 8px;
+    border-radius: 10px;
+}
+
+.main-content:focus {
+    outline: none;
+    border: none;
+}
+
+.main-content {
+    border: none;
+    height: 100vh;
+}
+
+.end {
+    height: 100px;
+}

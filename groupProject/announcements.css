@@ -1,0 +1,86 @@
+.announcements-heading {
+    margin-bottom: 0px;
+    width: 560px;
+}
+
+.announcements-main {
+    margin-left: 30px;
+}
+
+.announcements-button {
+    background-color: black;
+    margin-left: -100px;
+}
+
+.announcements-button:hover {
+  opacity: 0.7;
+}
+
+.announcements-button:active {
+  opacity: 0.5;
+}
+
+.announcement-content {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.announcement-item {
+  display: flex;
+  align-items: center; 
+  gap: 6px; 
+}
+
+.pin-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.announcement-text {
+  flex: 1;
+  min-height: 24px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.announcement-text:hover {
+  background-color: #f5f5f5;
+  cursor: text;
+}
+
+.announcement-text:focus,
+.announcement-text.editing {
+  border: none;
+  background-color: #f0f7ff;
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
+  outline: none;
+}
+
+.announcement-input {
+    width: 580px;
+    margin-left: 20px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background-color: rgb(248, 248, 247);
+}
+
+.announcement-input:focus {
+  border: none;
+  outline: none;
+}
+
+.input-form {
+    display: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}

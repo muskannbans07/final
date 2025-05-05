@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./styles.css" rel="stylesheet">
+    <link href="./modal.css" rel="stylesheet">
+    <link href="./sidepanel.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header-section">
+        <img class="header-image" src="./pictures/header.jpg">
+        <div class="top">
+          <div class="profile-img">
+            <img class="profile" src="./icons/notes-icon.svg">
+        </div> 
+    </div>
+
+    <div class="title">
+        <h1 class="page-heading">Notes</h1>
+        <button class="add-new" id="add-new-button">+ New</button>
+    </div>
+    
+      
+    <div class="grid-container">
+        <div class="last-card card" id="new-page-card">
+            <p >+ New page</p>
+        </div> 
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModalBtn" class="close">&times;</span>
+            <div class="modal-top">
+                <h1 id="modal-course-title">Course Name</h1>
+                <button class="modal-button">+ New</button>
+            </div>
+
+            <div class="notes-table-container">
+                <table class="notes-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date Created</th>
+                            <th>Last Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody class="notes-list">
+                        <!-- new notes will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="sidePanel" class="side-panel">
+      <button id="closeSidePanel">×</button>
+      <div id="sidePanelContent">
+        <!-- Content will be injected here -->
+      </div>
+    </div>
+    
+
+    <div class="end"></div>
+    <script src="./modal.js"></script>
+    <script src="./script.js"></script>
+
+</body>
+</html>

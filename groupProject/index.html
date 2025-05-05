@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./styles.css" rel="stylesheet">
+    <link href="./announcements.css" rel="stylesheet">
+    <link href="./tasks.css" rel="stylesheet">
+    <link href="./docs.css" rel="stylesheet">
+    <link href="./meetings.css" rel="stylesheet">
+    <link href="./people.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  </head>
+<body>
+    <div class="header-section">
+        <img class="header-image" src="./pictures/header10.jpg">
+        <div class="top">
+          <div class="profile-img">
+            <img class="profile" src="./pictures/pfp.jpg">
+          </div>
+          <button class="share-button">Share code</button>
+        </div>
+      </div> 
+      
+      <h1>Group Project</h1>
+
+      <div class="flex-container">
+
+          <div class="people-section section">
+            <h2 class="people-heading heading">People</h2>
+            <div class="people-table">
+
+              <div class="docs-row" id="new-person">
+                <div class="add-new-people">+ New page</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="announcements-section">
+                <div class="announcements-top section-top">
+                    <h2 class="announcements-heading heading">Announcements</h2>
+                    <button class="add-new announcements-button">+ New</button>
+                </div>
+
+                <div class="input-form">
+                  <input type="text" class="announcement-input"/>
+                </div>
+
+                <div class="announcements-main">
+                  <div class="announcement-content">
+                  </div>
+                </div>
+              </div>
+      </div>
+
+      <div class="flex-container row-two">
+          <div class="tasks-section">
+              <h2 class="tasks-heading heading">Tasks</h2>
+            
+              <table class="tasks-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Due date</th>
+                    <th>Last edited by</th>
+                    <th>Last edited</th>
+                  </tr>
+                </thead>
+                <tbody id="tasksTableBody">
+                  <tr id="add-row" class="add-row clickable-row">
+                    <td colspan="5" onclick="addTaskRow()">+ New</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+          </div>
+      </div>
+
+      <div class="flex-container row-three">
+        <div class="docs-section">
+          <h2 class="docs-heading heading">Docs</h2>
+            <div class="docs-table" id="docs-list">
+        
+            <div class="docs-row new-page">
+              <div id="new-doc" class="new-doc">+ New page</div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="meetings-section">
+      <h2 class="meetings-heading heading">Meetings</h2>
+      
+      <table class="meetings-table">
+        <thead>
+          <tr class="meetings-heading-row">
+            <th>Meeting Title</th>
+            <th>Date & Time</th>
+            <th>In-Person/Online</th>
+            <th>Meeting Objectives</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr id="add-row" class="add-row clickable-row">
+            <td colspan="4">+ New</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+      
+    <div class="end"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <script src="./script.js"></script>
+    <script src="./announcements.js"></script>
+    <script src="./tasks.js"></script>
+    <script src="./docs.js"></script>
+    <script src="./meetings.js"></script>
+    <script src="./people.js"></script>
+</body>
+</html>
