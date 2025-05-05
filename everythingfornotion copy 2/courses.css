@@ -1,0 +1,178 @@
+
+
+  .spotify-imbed {
+      margin-left: rem;
+      height: 12.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      width: 21rem;
+  }
+
+  .sidebar {
+      width: 100%px;
+      height: 38%;
+      padding-top: 1px;
+      padding-left: 160px;
+      padding-right: 160px;
+      padding-bottom: 15px;
+      border-radius: 10px;
+      background-color: rgb(242, 242, 242);
+  }
+
+  .sidebar-menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .sidebar-header {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: gray;
+      margin-bottom: 15px;
+      font-family: Plus Jakarta Sans;
+  }
+
+  .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  }
+
+  .sidebar-menu li {
+      display: flex;
+      align-items: center;
+      font-size: 17px;
+      font-family: Plus Jakarta Sans;
+      color: #606060;
+      padding: 9px 11px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+  }
+
+  .sidebar-menu li span {
+      margin-left: 8px;
+  }
+
+  .sidebar-menu li:hover {
+      background-color: #eaeaea;
+  }
+
+  .sidebar-menu .active {
+      background-color: transparent;
+      text-decoration: none;
+      color: inherit;
+  }
+
+  .courses-container {
+      max-width: 90%;
+      font-family: sans-serif;
+      margin: 2rem auto;
+    }
+  
+  h1 {
+    font-size: 42px;
+    margin-bottom: 2.7rem;
+    font-family: 'Playfair Display', serif;
+    color: rgb(84, 84, 84);
+    font-weight: 700;
+  }
+  
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0rem;
+  }
+  
+  .course-card {
+    background: rgb(231, 231, 231);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .courses-container {
+    max-width: 90%;
+    font-family: sans-serif;
+    margin: 2rem auto;
+  }
+  
+  h1 {
+    font-size: 42px;
+    margin-bottom: 2.7rem;
+    font-family: 'Playfair Display', serif;
+    color: rgb(84, 84, 84);
+    font-weight: 700;
+    margin-top: 4rem;
+  }
+  
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0rem;
+  }
+  
+  .course-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .course-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .course-info {
+    padding: 15px;
+  }
+  
+  .course-info h2 {
+    font-size: 20px;
+    color: rgb(53, 48, 48);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .course-info p {
+    font-size: 16px;
+    color: gray;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-bottom: 0px;
+  }
+  
+  .new-page {
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+  }
+  
+  .new-page button {
+    padding: 13px 22px;
+    width: 19rem;
+    font-size: 18.3px;
+    color: rgb(70, 63, 63);
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    font-family: Plus Jakarta Sans;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    vertical-align: center;
+    opacity: 90%;
+}

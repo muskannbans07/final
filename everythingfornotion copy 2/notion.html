@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="student-planner.css">
+    <link rel="stylesheet" href="courses.css">
+    <link rel="stylesheet" href="modal.css">
+
+    <style>
+        .quick-links {
+            margin-top: 0px;
+            padding: 15px;
+            width: 75%;
+            background-color: #2a2a2a;
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .quick-links-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 13px;
+        }
+
+        .link-card {
+            background-color: #3f3f3f;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .link-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .link-info span {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .link-info a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .link-actions {
+            cursor: pointer;
+            font-size: 18px;
+            color: #aaa;
+        }
+
+        .menu {
+            position: absolute;
+            top: 35px;
+            right: 10px;
+            background-color: #333;
+            border-radius: 5px;
+            padding: 5px;
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .menu button {
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .menu button:hover {
+            background-color: #444;
+        }
+
+        .add-link-form {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .add-link-form input {
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            background-color: #2b2b2b;
+            color: #fff;
+        }
+
+        .add-link-form button {
+            padding: 8px;
+            border: none;
+            background-color: #4caf50;
+            color: #fff;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .add-link-form button:hover {
+            background-color: #45a049;
+        }
+
+        .new-page-link button {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+            background-color: #fff;
+            border: none;
+            color: #333;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 19px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        add-link-form.hidden input::placeholder {
+            font-size: 15px;
+            font-family: Plus Jakarta Sans;
+            color:#f1f1f1;
+
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.1/dist/confetti.browser.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+
+            renderLinks();
+            updateCountdown();
+        });
+
+        let defaultLinks = [
+            { title: "ChatGPT", url: "https://chat.openai.com" },
+            { title: "Google Classroom", url: "https://classroom.google.com" },
+            { title: "GitHub", url: "https://github.com" }
+        ];
+
+        
+
+        function renderLinks() {
+            const container = document.getElementById('linksContainer');
+            container.innerHTML = '';
+
+            [...defaultLinks, ...customLinks].forEach((link, index) => {
+                const card = document.createElement('div');
+                card.className = 'link-card';
+
+                card.innerHTML = `
+                    <div class="link-info">
+                        <span>${link.title}</span>
+                        <a href="${link.url}" target="_blank">${link.url}</a>
+                    </div>
+                    <div class="link-actions" onclick="toggleMenu(event, ${index})">⋮</div>
+                    <div class="menu" id="menu-${index}">
+                        <button onclick="deleteLink(${index})">Delete</button>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function toggleMenu(e, index) {
+            e.stopPropagation();
+            const menu = document.getElementById(`menu-${index}`);
+            document.querySelectorAll('.menu').forEach(m => m.style.display = 'none');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function deleteLink(index) {
+    if (index < defaultLinks.length) {
+        defaultLinks.splice(index, 1);
+    } else {
+        customLinks.splice(index - defaultLinks.length, 1);
+        localStorage.setItem('customLinks', JSON.stringify(customLinks)); // Save to localStorage
+    }
+    renderLinks();
+}
+
+        function showAddLinkForm() {
+            document.querySelector('.add-link-form').classList.toggle('hidden');
+        }
+
+        let customLinks = JSON.parse(localStorage.getItem('customLinks')) || [];
+
+        function addQuickLink() {
+        const titleInput = document.getElementById('linkTitle');
+        const urlInput = document.getElementById('linkURL');
+        const title = titleInput.value.trim();
+        const url = urlInput.value.trim();
+
+        if (title && url) {
+            customLinks.push({ title, url });
+            localStorage.setItem('customLinks', JSON.stringify(customLinks)); // 👈 Save to localStorage
+            titleInput.value = '';
+            urlInput.value = '';
+            document.querySelector('.add-link-form').classList.add('hidden');
+            renderLinks();
+        } else {
+            alert("Please fill in both fields.");
+        }
+    }
+
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.menu').forEach(m => m.style.display = 'none');
+        });
+
+        const breakDate = new Date("2025-05-16");
+let manualOffset = 0;
+
+function getDaysUntilBreak() {
+    const today = new Date();
+    const timeDiff = breakDate - today;
+    const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    return Math.max(days + manualOffset, 0);
+}
+
+function updateCountdown() {
+    const daysLeft = getDaysUntilBreak();
+    const daysLeftElement = document.getElementById('daysLeft');
+    const semesterHeading = document.getElementById('semesterHeading');
+
+    daysLeftElement.textContent = `${daysLeft} day${daysLeft !== 1 ? 's' : ''}`;
+    semesterHeading.textContent = daysLeft <= 0 ? "Enjoy Your Break!" : "Days Until Break :";
+
+    if (daysLeft <= 0) {
+        launchPastelConfetti();  // Trigger confetti when break starts
+    }
+}
+
+function launchPastelConfetti() {
+        confetti({
+            particleCount: 900,
+            spread: 100,
+            startVelocity: 50,
+            origin: { y: 0.6 },
+            colors: ['#ffb3c6', '#ffc9de', '#bff0d4', '#f9f3a9', '#bae1ff'],
+            scalar: 1.2
+        });
+    }
+
+function adjustDays(amount) {
+    manualOffset += amount;
+    updateCountdown();
+}
+
+document.addEventListener('click', () => {
+    document.querySelectorAll('.menu').forEach(m => m.style.display = 'none');
+});
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header__title">BrainBoard</div>
+        <div class="header__icon">
+            <img src="header-icon.jpg">
+        </div>
+    </div>
+
+    <aside class="sidebar">
+        <p class="sidebar-header"></p>
+        <ul class="sidebar-menu">
+            <li class="active"><span>Home</span></li>
+            <li><span><a href="#" class="active" onclick="scrollToSection(event, 'courses')">Courses</a></span></li>
+            <li><span><a href="#" class="active" onclick="scrollToSection(event, 'timetable')">Time Table</a></span></li>
+            <li><span><a href="tracker.html" class="active">Expense Tracker</a></span></li>
+            <li><span><a href="../cornellNotes/index.html" class="active">Class Notes</a></span></li>
+            <li><span><a href="../groupProject/index.html" class="active">Group Project Planner</a></span></li>
+        </ul>
+    </aside>
+
+    <div class="overall">
+        <div class="left-side">
+            <div class="spotify-imbed">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0d8yseU2A3C6gkyB59tbWG?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+
+            <div class="countdown">
+                <h2 id="semesterHeading">Days Until Break</h2>
+                <div class="controls">
+                    <button onclick="adjustDays(-1)">&#8722;</button>
+                    <div class="days-left" id="daysLeft">Loading...</div>
+                    <button onclick="adjustDays(1)">&#43;</button>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <h2 class="quick-links-title">Quick Access</h2>
+                <div id="linksContainer"></div>
+
+                <div class="new-page-link">
+                    <button onclick="showAddLinkForm()">+ New page</button>
+                </div>
+
+                <div class="add-link-form hidden">
+                    <input type="text" id="linkTitle" placeholder="NAME">
+                    <input type="text" id="linkURL" placeholder="URL">
+                    <button onclick="addQuickLink()">Add Link</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="student-planner">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="courses-container" id="courses">
+        <h1> Courses</h1>
+        <div class="courses-scroll-wrapper">
+        <div class="courses-grid">
+            <!-- Course cards will be added here dynamically -->
+          </div>
+      
+        <div class="new-page">
+          <button id="newPageBtn">+ New page</button>
+        </div>
+    </div>
+    </div>   
+    
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&larr;</span>
+    
+            <div class="modal-header">
+                <img src="header-icon.jpg" id="modalImage" alt="Course Cover">
+            </div>
+    
+            <div class="modal-body">
+                <h1 id="modalTitle" class="modal-title">Course Title</h1>
+                <p id="modalCode" class="modal-code">Course Code</p>
+                <p id="modalDescription" class="modal-description">This is your course space! Add your tasks and projects here.</p>
+                <div class="section">
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                      
+                      <div style="display: flex; align-items: center; gap: 1rem;">
+                        <h2>Resources</h2>
+                        <button id="showBookInputBtn" class="add-btn">Add Link</button>
+                      </div>
+                  
+                      <div class="resource-input-form" style="display: none;">
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                          <input type="text" id="resourceTitle" placeholder="Resource Title">
+                          <input type="url" id="resourceUrl" placeholder="Resource URL">
+                          <button id="saveResourceBtn" class="add-btn">Save</button>
+                          <button id="cancelResourceBtn" class="add-btn">Cancel</button>
+                        </div>
+                      </div>
+                  
+                      <div id="resourceList" class="resource-list"></div>
+                  
+                    </div>
+                  </div>
+                   
+
+                <!-- Assignment Section -->
+                <div class="section">
+                    <h2>Add Assignment</h2>
+                    <div class="assignment-form">
+                        <input type="text" id="assignmentName" placeholder="Assignment Name">
+                        <input type="date" id="assignmentDeadline">
+                      
+                        <button id="addAssignmentBtn" class="add-btn">Add Assignment</button>
+                    </div>
+
+                    <div id="assignmentList" class="assignment-list">
+                        No assignments yet!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-bottom">
+
+        <div class="todo-container">
+            <h2>To-do List</h2>
+            <ul class="todo-list">
+              <li><label><input type="checkbox" /><span class="checkmark"></span><input type="text" class="todo-text"> </label></li>
+              <li><label><input type="checkbox" /><span class="checkmark"></span></span><input type="text" class="todo-text"> </label></li>
+              <li><label><input type="checkbox" /><span class="checkmark"></span> </span><input type="text" class="todo-text"></label></li>
+              <li><label><input type="checkbox" /><span class="checkmark"></span></span><input type="text" class="todo-text"> </label></li>
+              <li><label><input type="checkbox" /><span class="checkmark"></span> </span><input type="text" class="todo-text"></label></li>
+              <li><label><input type="checkbox" /><span class="checkmark"></span></span><input type="text" class="todo-text"> </label></li>
+            </ul>
+          </div>
+
+          <div class="timetable-container" id="timetable">
+            <table id="class-timetable">
+                      <thead>
+                        <tr>
+                          <th>Time</th>
+                          <th>Monday</th>
+                          <th>Tuesday</th>
+                          <th>Wednesday</th>
+                          <th>Thursday</th>
+                          <th>Friday</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Time slots from 9:30 to 5:30 -->
+                        <tr>
+                          <td style="
+                            background-color: #cde6cfe4;
+                            font-family: Cal Sans;
+                            font-size: 18px;">9:30 – 10:30</td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                        </tr>
+                        <tr>
+                          <td style="
+                            background-color: #cde6cfe4;
+                            font-family: Cal Sans;
+                            font-size: 18px;">10:30 – 11:30</td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                        </tr>
+                        <tr>
+                          <td style="
+                            background-color: #cde6cfe4;
+                            font-family: Cal Sans;
+                            font-size: 18px;">11:30 – 12:30</td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                        </tr>
+                        <tr>
+                          <td style="
+                            background-color: #cde6cfe4;
+                            font-family: Cal Sans;
+                            font-size: 18px;">12:30 – 1:30</td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                        </tr>
+                        <tr>
+                          <td style="
+                            background-color: #cde6cfe4;
+                            font-family: Cal Sans;
+                            font-size: 18px;">1:30 – 2:30</td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                        </tr>
+                        <tr>
+                          <td style="
+                            background-color: #cde6cfe4;
+                            font-family: Cal Sans;
+                            font-size: 18px;">2:30 – 3:30</td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                        </tr>
+                        <tr>
+                          <td style="
+                            background-color: #cde6cfe4;
+                            font-family: Cal Sans;
+                            font-size: 18px;">3:30 – 4:30</td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                        </tr>
+                        <tr>
+                          <td style="
+                            background-color: #cde6cfe4;
+                            font-family: Cal Sans;
+                            font-size: 18px;">4:30 – 5:30</td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                          <td contenteditable="true"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+
+
+    </div>
+
+              <script src="script.js"></script>
+        </body>
+    </html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monthly Budget</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      margin: 0;
+      background: rgb(238, 242, 244);
+      overflow-x: hidden;
+      margin-bottom: 1000px;
+    }
+    h1 {
+      font-size: 42px;
+      margin: 4rem 0 3rem 5rem;
+    }
+    p {
+      margin: 0 5rem 2rem 5rem;
+      color: rgb(151, 151, 151);
+      font-size: 17px;
+      line-height: 26px;
+    }
+    .highlight {
+      background-color: #f1f1ef;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    .container {
+      margin: 0 10rem 0 10rem;
+      margin-top: 5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 10rem;
+    }
+    .table-container {
+      flex: 1;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    th, td {
+      max-width: 150px;
+      min-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      padding: 12px 4px;
+      border-bottom: 1px solid #e1e1e1;
+      color: black;
+    }
+    th:first-child, td:first-child {
+      max-width: 30px;
+      min-width: 30px;
+      width: 30px;
+    }
+    .heading {
+      font-weight: 400;
+      color: rgb(131, 131, 131);
+    }
+    .table-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 22px;
+    }
+    .table-title.green {
+      color: #336a58;
+    }
+    .table-title.red {
+      color: #972f28;
+    }
+    .sum {
+      text-align: right;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+    .add-row {
+      color: gray;
+      font-size: 15px;
+      cursor: pointer;
+      padding-top: 12px;
+    }
+    a {
+      color: #5b5b5b;
+      text-decoration: underline;
+    }
+    .icon {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .header {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 30vh;
+        background-image: url(_-2.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .header__icon {
+        position: relative;
+        bottom: -150px;
+        left: 60px;
+    }
+    .header__icon img {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 20px;
+    }
+    .editable {
+      cursor: pointer;
+    }
+    .editable:hover {
+      background-color: #f2f2f2;
+    }
+    .edit-input {
+      font-size: 16px;
+      padding: 7px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background-color: rgb(231, 231, 231);
+      font-family: inherit;
+      font-weight: inherit;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    .menu-cell {
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      color: gray;
+      position: relative;
+    }
+    .menu-cell:hover {
+      color: black;
+    }
+    .menu-popup {
+      position: absolute;
+      background: rgb(242, 242, 242);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      padding: 8px 16px;
+      z-index: 10;
+      cursor: pointer;
+      display: none;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      top: 24px;
+      right: 10px;
+      left: -85px;
+    }
+    td.menu-cell {
+      position: relative;
+      overflow: visible; 
+    }
+    tr {
+      overflow: visible;
+    }
+    table {
+      overflow: visible;
+    }
+    .menu-popup:hover {
+      background-color: #f8f8f8;
+      color: #000;
+    }
+    #monthly-summary-table {
+    width: 100%;
+    max-width: 600px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    background-color: #f3f6f8;
+    visibility: hidden;
+    }
+
+    #monthly-summary-table th,
+    #monthly-summary-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+    }
+
+
+    #monthly-summary-table th {
+    background-color: #eef1f5;
+    font-weight: bold;
+    }
+
+    #monthly-summary-table td:nth-child(4) {
+    font-weight: bold;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header__icon">
+      <img src="Unknown-2 copy.jpg" />
+    </div>
+  </div>
+  <h1>Monthly Budget</h1>
+  <p>
+    Use this to figure out how much you make and spend in a given month. List your income sources for the month and their amount in the <span class="highlight">Income</span> table and your expenses in the <span class="highlight">Expenses</span> table. Find your totals at the bottom of each table, labelled <span class="highlight">SUM</span>.
+  </p>
+  <div class="container">
+    <div class="table-container">
+      <div class="table-title green"><span class="icon">＋</span> Income</div>
+      <table id="income-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="heading">Income Item</th>
+            <th class="heading"># Amount</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="sum" id="income-sum"></div>
+      <div class="add-row" onclick="addRow('income-table', 'income-sum')">＋ New page</div>
+    </div>
+
+    <div class="table-container">
+      <div class="table-title red"><span class="icon">－</span> Expenses</div>
+      <table id="expenses-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="heading">Expense Item</th>
+            <th class="heading"># Amount</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="sum" id="expenses-sum"></div>
+      <div class="add-row" onclick="addRow('expenses-table', 'expenses-sum')">＋ New page</div>
+    </div>
+  </div>
+
+  <div class="table-container" style="flex: 1; margin-top: 4rem; visibility: hidden;">
+    <div class="table-title">Monthly Summary</div>
+    <table id="monthly-summary-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Income</th>
+          <th>Expenses</th>
+          <th>Net</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+
+  <script>
+    function parseAmount(str) {
+      return parseFloat(str.replace(/[₹,]/g, '')) || 0;
+    }
+  
+    function formatAmount(num) {
+      return `₹${num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+    }
+  
+    function updateSum(tableId, sumId) {
+      const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+      let total = 0;
+      rows.forEach(row => {
+        const amount = row.cells[2];
+        if (amount) total += parseAmount(amount.innerText);
+      });
+      document.getElementById(sumId).textContent = `SUM ${formatAmount(total)}`;
+    }
+  
+    function makeEditable(el) {
+      const originalText = el.innerText.trim();
+      const isAmount = el.dataset.type === 'amount';
+  
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = isAmount ? originalText.replace(/[₹,]/g, '') : originalText;
+      input.className = 'edit-input';
+  
+      input.onblur = () => {
+        let value = input.value.trim();
+        if (isAmount) {
+          const number = parseFloat(value.replace(/[^\d.-]/g, '')) || 0;
+          value = `₹${number.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+        }
+        el.innerText = value;
+        el.classList.add('editable');
+        el.setAttribute('data-type', isAmount ? 'amount' : 'text');
+        el.onclick = () => makeEditable(el);
+  
+        const table = el.closest('table');
+        const sumId = table.id === 'income-table' ? 'income-sum' : 'expenses-sum';
+        if (isAmount) updateSum(table.id, sumId);
+  
+        saveToLocalStorage();
+      };
+  
+      input.onkeydown = (e) => {
+        if (e.key === 'Enter') input.blur();
+      };
+  
+      el.innerHTML = '';
+      el.appendChild(input);
+      input.focus();
+    }
+  
+    function createRow(item, amount, tableId) {
+      const tr = document.createElement('tr');
+  
+      const menuCell = document.createElement('td');
+      menuCell.className = 'menu-cell';
+      menuCell.innerHTML = '⋮';
+  
+      const popup = document.createElement('div');
+      popup.className = 'menu-popup';
+      popup.textContent = 'Delete Row';
+      menuCell.appendChild(popup);
+  
+      menuCell.onclick = (e) => {
+        e.stopPropagation();
+        const isVisible = popup.style.display === 'block';
+        popup.style.display = isVisible ? 'none' : 'block';
+        if (!isVisible) {
+          popup.style.opacity = 0;
+          setTimeout(() => popup.style.opacity = 1, 10);
+        }
+      };
+  
+      popup.onclick = (e) => {
+        e.stopPropagation();
+        tr.remove();
+        updateSum(tableId, tableId === 'income-table' ? 'income-sum' : 'expenses-sum');
+        saveToLocalStorage();
+      };
+  
+      document.addEventListener('click', () => {
+        popup.style.display = 'none';
+      });
+  
+      const td1 = document.createElement('td');
+      td1.textContent = item;
+      td1.className = 'editable';
+      td1.dataset.type = 'text';
+      td1.onclick = () => makeEditable(td1);
+  
+      const td2 = document.createElement('td');
+      td2.textContent = amount;
+      td2.className = 'editable';
+      td2.dataset.type = 'amount';
+      td2.onclick = () => makeEditable(td2);
+  
+      tr.appendChild(menuCell);
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+  
+      return tr;
+    }
+  
+    function addRow(tableId, sumId) {
+      const tbody = document.querySelector(`#${tableId} tbody`);
+      const tr = createRow('New Item', '₹0.00', tableId);
+      tbody.appendChild(tr);
+      updateSum(tableId, sumId);
+      saveToLocalStorage();
+    }
+  
+    function saveToLocalStorage() {
+      const saveData = (tableId) => {
+        const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+        return Array.from(rows).map(row => ({
+          item: row.cells[1].innerText,
+          amount: row.cells[2].innerText
+        }));
+      };
+      localStorage.setItem('budget-income', JSON.stringify(saveData('income-table')));
+      localStorage.setItem('budget-expenses', JSON.stringify(saveData('expenses-table')));
+
+      updateMonthlySummary();
+    }
+  
+    function loadFromLocalStorage() {
+      const incomeData = JSON.parse(localStorage.getItem('budget-income')) || [];
+      const expensesData = JSON.parse(localStorage.getItem('budget-expenses')) || [];
+      function populate(tableId, data) {
+        const tbody = document.querySelector(`#${tableId} tbody`);
+        tbody.innerHTML = '';
+        data.forEach(row => {
+          const tr = createRow(row.item, row.amount, tableId);
+          tbody.appendChild(tr);
+        });
+      }
+      populate('income-table', incomeData);
+      populate('expenses-table', expensesData);
+      updateSum('income-table', 'income-sum');
+      updateSum('expenses-table', 'expenses-sum');
+    }
+
+    function getCurrentMonthYear() {
+  const now = new Date();
+  return now.toLocaleString('default', { month: 'long', year: 'numeric' });
+}
+
+function updateMonthlySummary() {
+  const incomeRows = JSON.parse(localStorage.getItem('budget-income')) || [];
+  const expenseRows = JSON.parse(localStorage.getItem('budget-expenses')) || [];
+
+  const monthlyData = {};
+
+  const addToMonth = (data, type) => {
+    const month = getCurrentMonthYear(); // This assumes all current entries are for the current month
+    if (!monthlyData[month]) monthlyData[month] = { income: 0, expenses: 0 };
+
+    data.forEach(entry => {
+      const amount = parseAmount(entry.amount);
+      if (type === 'income') monthlyData[month].income += amount;
+      else if (type === 'expenses') monthlyData[month].expenses += amount;
+    });
+  };
+
+  addToMonth(incomeRows, 'income');
+  addToMonth(expenseRows, 'expenses');
+
+  const tbody = document.querySelector('#monthly-summary-table tbody');
+  tbody.innerHTML = '';
+
+  Object.entries(monthlyData).forEach(([month, { income, expenses }]) => {
+    const net = income - expenses;
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${month}</td>
+      <td>${formatAmount(income)}</td>
+      <td>${formatAmount(expenses)}</td>
+      <td style="color: ${net < 0 ? 'red' : 'green'}">${formatAmount(net)}</td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+updateMonthlySummary();
+loadFromLocalStorage();
+
+  </script>
+</body>
+</html>

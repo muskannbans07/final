@@ -1,0 +1,646 @@
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.6); 
+  backdrop-filter: blur(6px);
+}
+
+/* Modal content */
+.modal-content {
+  background-color: rgb(158, 176, 205);
+  margin: 5% auto; 
+  padding: 20px;
+  border-radius: 14px;
+  width: 80%;
+  max-width: 700px;
+  color: white;
+  position: relative;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Modal header image */
+.modal-header img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Modal body text */
+.modal-body {
+  font-family: Plus Jakarta Sans;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.modal-body h1 {
+  color: rgb(49, 49, 49);
+  margin-bottom: 20px;
+}
+
+.modal-body p {
+  color: rgb(49, 49, 49);
+  font-weight: 500;
+  margin-top: 5px;
+  padding-top: 0px;
+}
+
+/* Close button */
+.close-button {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  font-size: 30px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.assignment-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+  background-color: #dddddd;
+  padding: 13px 13px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+/* General input styling */
+.assignment-form input[type="text"],
+.assignment-form input[type="date"] {
+  background-color: #dddddd;
+  font-size: 18px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 500;
+  text-align: center;
+  width: 200px;
+}
+
+.assignment-form input[type="text"] {
+  width: 200px; /* reduced from 200px */
+}
+
+/* Checkbox looks better */
+.assignment-form input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.assignment-form input[type="date"] {
+text-align: center;
+}
+
+/* Label for checkbox */
+.assignment-form label {
+  font-size: 16px;
+  color: #333;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Button styling */
+.assignment-form button {
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.assignment-form button:hover {
+  background-color: #45a049;
+}
+
+/* Modal Headings */
+.modal h2,
+.modal h3 {
+  font-size: 21px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.assignment-card {
+  background: #dddddd;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 15px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.assignment-card h4 {
+  margin: 0;
+  font-size: 20px;
+  color: #4a4a4a;
+}
+
+.assignment-card p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.completed {
+  color: rgb(16, 113, 16);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.not-completed {
+  color: rgb(204, 23, 23);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.delete-assignment {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  color: #404040;
+  border: 1px solid #5f5f5f;
+  padding: 1px 7px;
+  font-size: 17px;
+  border-radius: 5px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.course-card {
+  position: relative;
+}
+
+.edit-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 15px;
+  font-family: Plus Jakarta Sans;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  padding: 5px;
+  width: 150px;
+}
+
+.dropdown.show {
+  display: block;
+}
+
+.dropdown-toggle {
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-menu button {
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  font-family: Plus Jakarta Sans;
+  border: none;
+  padding: 5px;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-menu button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+.link-section {
+  background: #d8e0f9;
+  padding: 15px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.link-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #f3f3f3;
+}
+
+.links-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.links-list li {
+  background: #f5f5f5;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  word-break: break-word;
+  font-size: 1rem;
+}
+
+.add-btn:hover {
+  background-color: #0069d9;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.input-group button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.add-btn {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background-color: #4CAF50;
+  color: white;
+  font-family: Plus Jakarta Sans;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.input-group button:hover {
+  background-color: #218838;
+}
+
+.hidden {
+  display: none;
+}
+
+.timetable-container {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  padding-left: 20px; /* optional for spacing from todo list */
+}
+
+#class-timetable {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 1000px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 17px;
+  table-layout: fixed; /* makes cells distribute evenly */
+  
+}
+
+#class-timetable th,
+#class-timetable td {
+  border: 1.7px solid #ececec;
+  font-family: Plus Jakarta Sans;
+  font-weight: 500;
+  font-size: 16px;
+  color: #5f5f5f;
+  padding: 14px 12px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgb(248, 244, 232);
+}
+
+#class-timetable th {
+  background-color: #b6cbe1;
+  font-weight: 400;
+  color: #5f5f5f;
+  font-size: 18px;
+  font-family: Cal Sans;
+}
+
+#class-timetable td[contenteditable="true"] {
+  cursor: text;
+  transition: background-color 0.2s ease;
+}
+
+#class-timetable td[contenteditable="true"]:focus {
+  outline: none;
+  background-color: #e0e7ff !important;
+}
+
+
+#class-timetable th, #class-timetable td {
+  width: auto;
+}
+
+.home-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  gap: 2rem; /* gives spacing between todo and timetable */
+}
+
+.todo-container {
+  width:280px;
+  padding: 15px;
+  border-radius: 15px;
+  padding-top: 10px;
+  background-color: rgb(248, 244, 232);
+  flex: 0 0 250px;
+  margin-left: 3.3rem;
+}
+
+.todo-container h2 {
+  text-align: center;
+  color: #5f5f5f;
+  font-size: 23px;
+  font-family: Cal Sans;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-list li {
+  background: var(--row-color);
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  position: relative;
+}
+
+.todo-text {
+  background-color: transparent;
+  border: none;
+  font-size: 10px;
+  font-family: Plus Jakarta Sans;
+  font-family: 500;
+  color: rgb(79, 79, 79);
+}
+
+.todo-text:focus {
+  outline: none;
+  box-shadow: none;
+  caret-color: rgb(138, 138, 138);
+}
+
+.todo-list li:nth-child(odd) {
+  --row-color: #d6e6f5;
+}
+
+.todo-list li:nth-child(even) {
+  --row-color: #cde6cfe4
+}
+
+.todo-container label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+
+.section {
+  background-color: #6c8eac;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+  position: relative;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.section h2 {
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.add-btn {
+  background-color: #5cb85c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resource-card {
+  background-color: #dddddd;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  border-radius: 10px;
+  color: rgb(102, 102, 102);
+  font-family: Plus Jakarta Sans;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resource-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-title,
+.resource-url {
+  outline: none;
+  margin-bottom: 0.25rem;
+}
+
+.delete-resource {
+  background: transparent;
+  color: rgb(50, 50, 50);
+  font-size: 1.7rem;
+  border: none;
+  box-shadow: none;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  transform: rotate(90deg); /* vertical 3 dots */
+}
+
+.resource-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.resource-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+.menu-btn {
+  background: white;
+  color: black;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  background: white;
+  color: black;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.menu-dropdown button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+}
+
+.menu-dropdown button:hover {
+  background-color: #eee;
+}
+
+.resource-input-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.resource-input-form input[type="text"],
+.resource-input-form input[type="url"] {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  width: 200px;
+  font-size: 14px;
+}
+
+.resource-input-form button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#saveResourceBtn, #cancelResourceBtn {
+  background-color: #5cb85c;
+  color: rgb(243, 243, 243);
+  padding: 5px 10px;
+
+}
+
+.resource-input-form {
+  margin-top: 1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+input[type="text"],
+input[type="url"] {
+  padding: 0.75rem 1rem;
+  border-radius: 20px;
+  border: none;
+  font-size: 1rem;
+  font-family: Plus Jakarta Sans;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  width: 250px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+
+.no-resources {
+  font-style: italic;
+  color: white;
+  opacity: 0.8;
+}

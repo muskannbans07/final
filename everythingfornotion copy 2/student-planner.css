@@ -1,0 +1,190 @@
+.student-planner {
+  position: relative;
+    height: 100vh;
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: flex-start;
+    margin-left: 5.7rem;
+    box-sizing: border-box;
+    padding-bottom: 4rem;
+
+}
+
+#calendar {
+    flex: 1;
+    min-width: 26rem;
+    max-width: 62%;
+    height: 44rem;
+    background-color: rgb(141, 170, 217);
+    padding: 1rem;
+    border-radius: 5px;
+    color: rgb(248, 236, 222);
+    text-align: center;
+    font-family: Cal Sans;
+  }
+
+.fc-daygrid-day-number {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #fffaf4;
+}
+
+.fc .fc-button {
+    background-color: #2d3e50; 
+    color: #f8ecee;
+    border: none;
+    padding: 6px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .fc-col-header-cell-cushion {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fffaf4; 
+  }
+
+  .fc-header-toolbar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 0;
+  }
+
+  .fc-today-button {
+    background-color: #4074bc;
+    font-family: Cal Sans;
+    color: #fffaf4;
+    border: none;
+    padding: 6px 18px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .fc-toolbar-title {
+    font-size: 1.5rem;
+    font-weight: 500; 
+    color: #f8ecee; 
+  }
+
+  .fc-daygrid-day-frame {
+    min-height: 60px;
+  }
+
+  .custom-event {
+    color: white;
+    font-family: Plus Jakarta Sans;
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #ffffff33;
+    border: none;
+    border-radius: 8px;
+    padding: 2px;
+  }
+
+  .home-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  
+
+  .text-section textarea {
+    background-color: rgb(250, 242, 226, 0.94);
+    border: none;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 18px;
+    color: grey;
+    }
+
+    .text-section textarea::placeholder {
+        font-size: 18px;
+    }
+
+    .text-section textarea:focus {
+      outline: none;
+    }
+
+
+  .title-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 0.5rem;
+  }
+
+  .countdown {
+    width: 78%;
+    height: 6.2rem;
+    background-color: rgb(60, 98, 128);
+    border-radius: 25px;
+    padding: 1rem 1.7rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    color: #8fadc6;
+    text-align: center;
+    animation: fadeIn 1s ease;
+    transition: transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+
+  }
+  
+  .countdown h2 {
+    font-family: Cal Sans;
+    font-size: 1.6em;
+    margin: 0 0 10px;
+    color: #b5c8e0f1;
+    margin-bottom: 7px;
+  }
+
+  .days-left {
+    font-size: 2.1rem;
+    font-family: Cal Sans;
+    font-weight: bold;
+    color: #b5c8e0f1;
+    padding-bottom: 10px;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .controls button {
+    font-weight: 600;
+    font-family: Playfair Display;
+    padding: 5px 10px;
+    border: none;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #cdcdcd58;
+    font-size: 1.5rem;
+    padding: 0.3rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .controls button:hover {
+    background-color: #ffffff55;
+  }
+
+
+  

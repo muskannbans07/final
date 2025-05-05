@@ -1,0 +1,77 @@
+body {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 100px;
+    overflow-x: hidden;
+    background-color: rgb(230, 237, 250);
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 30vh;
+    background-image: url(header.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.header__title {
+    position: relative;
+    font-family: Playfair Display;
+    font-size: clamp(3.5rem, 6.5vw, 6.5rem);
+    color: rgb(63, 63, 63);
+    text-align: center;
+    vertical-align: auto;
+    text-shadow: 3px 3px 0px rgb(230, 225, 216), -3px -3px 0px rgb(228, 220, 201), 3px -3px 0px rgb(228, 220, 201), -3px 3px 0px rgb(228, 220, 201);
+    top: 8vh;
+    font-weight: bold;
+
+}
+.header__icon {
+    position: relative;
+    bottom: -20px;
+    left: 60px;
+    
+}
+
+.header__icon img {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 20px;
+}
+
+.overall {
+    margin: 2rem;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: start;
+    margin-left: 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-side {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
