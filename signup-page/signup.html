@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create an Account</title>
+    <link rel="stylesheet" href="signup.css" />
+    <script type="text/javascript" src="validation.js" defer></script>
+    <script type="text/javascript" src="server.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Create an account</h1>
+      <form id="form">
+        <div>
+          <input
+            type="text"
+            name="firstname"
+            required
+            id="firstname-input"
+            placeholder="Firstname"
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            name="email"
+            required
+            id="email-input"
+            placeholder="Email"
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            name="password"
+            required
+            id="password-input"
+            placeholder="Password"
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            name="repeat-password"
+            required
+            id="repeat-password-input"
+            placeholder="Repeat Password"
+          />
+        </div>
+        <button type="submit">Create Account</button>
+      </form>
+      <div id="error-message"></div>
+
+      <p>
+        Already have an Account?
+        <a href="../login-template/Login_v1/index.html">login</a>
+      </p>
+    </div>
+  </body>
+</html>
